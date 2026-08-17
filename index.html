@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f0e5" />
+    <title>room-coordinate</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app" id="app">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="room-coordinate ホーム">
+          <span class="brand-mark" aria-hidden="true">⌂</span>
+          <span>room-coordinate</span>
+        </a>
+        <p class="topbar-note">家具をつかんで、心地よい部屋をつくろう。</p>
+      </header>
+
+      <section class="editor" id="editorScreen" aria-label="部屋のコーディネート">
+        <aside class="catalog" aria-labelledby="catalogTitle">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">FURNITURE</span>
+              <h1 id="catalogTitle">家具をえらぶ</h1>
+            </div>
+            <span class="count" id="placedCount">0個</span>
+          </div>
+          <p class="catalog-help">部屋までドラッグして置いてね</p>
+          <div class="furniture-list" id="furnitureList"></div>
+          <div class="tip">
+            <span class="tip-icon" aria-hidden="true">✦</span>
+            <p><strong>ヒント</strong><br />置いた家具も、もう一度つかんで動かせます。</p>
+          </div>
+        </aside>
+
+        <section class="workspace" aria-labelledby="roomTitle">
+          <div class="workspace-heading">
+            <div>
+              <span class="eyebrow">MY ROOM</span>
+              <h2 id="roomTitle">わたしの部屋</h2>
+            </div>
+            <div class="legend" aria-label="配置状態の凡例">
+              <span><i class="legend-dot available"></i>置ける</span>
+              <span><i class="legend-dot blocked"></i>置けない</span>
+            </div>
+          </div>
+
+          <div class="room-shell">
+            <div
+              class="room"
+              id="room"
+              role="application"
+              aria-label="10列8行の部屋。家具をドラッグして配置します"
+            >
+              <div class="window" aria-hidden="true"><span></span><span></span></div>
+              <div class="door-zone" aria-hidden="true"><span>出入口</span></div>
+              <div class="rug-shadow" aria-hidden="true"></div>
+              <div class="grid-overlay" aria-hidden="true"></div>
+              <div class="furniture-layer" id="furnitureLayer"></div>
+              <div class="drop-preview" id="dropPreview" hidden></div>
+            </div>
+          </div>
+
+          <div class="status-message" id="statusMessage" role="status" aria-live="polite">
+            家具を選んで、部屋に置いてみよう
+          </div>
+        </section>
+      </section>
+
+      <footer class="actionbar" id="actionbar">
+        <div class="requirements" aria-labelledby="requirementsTitle">
+          <span class="eyebrow" id="requirementsTitle">COMPLETE</span>
+          <div class="requirement-list" id="requirementList"></div>
+        </div>
+        <div class="actions">
+          <button class="button button-secondary" id="resetButton" type="button">リセット</button>
+          <button class="button button-primary" id="completeButton" type="button" disabled>
+            <span>お部屋を完成する</span><span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </footer>
+
+      <section class="completion" id="completionScreen" aria-labelledby="completionTitle" hidden>
+        <div class="completion-card">
+          <span class="completion-sparkle" aria-hidden="true">✦</span>
+          <p class="eyebrow">ROOM COMPLETE</p>
+          <h1 id="completionTitle" tabindex="-1">すてきなお部屋ができました！</h1>
+          <p>家具の配置に、あなたらしさが光っています。</p>
+          <div class="completed-room" id="completedRoom" aria-label="完成した部屋"></div>
+          <div class="completion-actions">
+            <button class="button button-secondary" id="editButton" type="button">部屋を編集する</button>
+            <button class="button button-primary" id="startOverButton" type="button">最初から</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="confirm-dialog" id="resetDialog">
+      <form method="dialog">
+        <span class="dialog-icon" aria-hidden="true">↺</span>
+        <h2>配置をリセットしますか？</h2>
+        <p>置いた家具がすべてサイドバーに戻ります。</p>
+        <div class="dialog-actions">
+          <button class="button button-secondary" value="cancel">キャンセル</button>
+          <button class="button button-danger" value="confirm">リセットする</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="drag-ghost" id="dragGhost" hidden aria-hidden="true"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
