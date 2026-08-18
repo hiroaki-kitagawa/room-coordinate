@@ -251,8 +251,10 @@ function finishDrag() {
       state.placed.push({ instanceId, type: state.drag.item.id, rotation: state.drag.rotation, flipped: state.drag.flipped, ...state.drag.candidate });
     }
     const itemName = state.drag.item.name;
+    state.selectedInstanceId = instanceId;
     clearDrag();
     renderPlaced(instanceId);
+    document.querySelector(`[data-instance="${instanceId}"]`)?.focus({ preventScroll: true });
     setStatus(`${itemName}を置きました`, "success");
   } else {
     const reason = state.drag.reason;
