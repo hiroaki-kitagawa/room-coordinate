@@ -4,12 +4,12 @@ const GRID = { columns: 10, rows: 8 };
 const BLOCKED_CELLS = new Set(["4,6", "5,6", "4,7", "5,7"]);
 
 const FURNITURE = [
-  { id: "bed", name: "ベッド", icon: "🛏️", width: 2, height: 3, limit: 1, required: true },
-  { id: "table", name: "テーブル", icon: "▦", width: 2, height: 2, limit: 1, required: true },
-  { id: "chair", name: "チェア", icon: "🪑", width: 1, height: 1, limit: 4 },
-  { id: "sofa", name: "ソファ", icon: "🛋️", width: 3, height: 1, limit: 1 },
-  { id: "plant", name: "観葉植物", icon: "🪴", width: 1, height: 1, limit: 3 },
-  { id: "rug", name: "ラグ", icon: "▰", width: 3, height: 2, limit: 1 }
+  { id: "bed", name: "ベッド", image: "images/bed.png", width: 2, height: 3, limit: 1, required: true },
+  { id: "table", name: "テーブル", image: "images/table.png", width: 2, height: 2, limit: 1, required: true },
+  { id: "chair", name: "チェア", image: "images/chair.png", width: 1, height: 1, limit: 4 },
+  { id: "sofa", name: "ソファ", image: "images/sofa.png", width: 3, height: 1, limit: 1 },
+  { id: "plant", name: "観葉植物", image: "images/houseplants.png", width: 1, height: 1, limit: 3 },
+  { id: "rug", name: "ラグ", image: "images/rug.png", width: 3, height: 2, limit: 1 }
 ];
 
 const state = { placed: [], drag: null, nextId: 1 };
@@ -39,7 +39,9 @@ function definition(type) {
 }
 
 function furnitureArt(item) {
-  return `<span class="furniture-art ${item.id}" aria-hidden="true">${item.icon}</span>`;
+  return `<span class="furniture-art ${item.id}" aria-hidden="true">
+    <img src="${item.image}" alt="" draggable="false" />
+  </span>`;
 }
 
 function renderCatalog() {

@@ -56,6 +56,10 @@ h1, h2 { margin-bottom: 0; font-family: Georgia, "Yu Mincho", serif; font-weight
 .furniture-art.sofa { background: #cedee2; }
 .furniture-art.plant { background: #d7e4d4; }
 .furniture-art.rug { background: #ead9be; }
+.furniture-art img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none; }
+.catalog-item .furniture-art { flex: 0 0 auto; overflow: hidden; }
+.catalog-item .furniture-art.bed { width: 48px; height: 44px; }
+.catalog-item .furniture-art.bed img { width: 88%; height: 88%; }
 
 .tip { display: flex; gap: 10px; margin-top: 24px; padding: 14px; border-radius: 14px; background: #f5f1e7; color: var(--muted); font-size: 11px; line-height: 1.7; }
 .tip p { margin: 0; }.tip strong { color: var(--ink); }.tip-icon { color: #b5955d; }
