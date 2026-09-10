@@ -98,6 +98,7 @@ h1, h2 { margin-bottom: 0; font-family: Georgia, "Yu Mincho", serif; font-weight
 .placed-item.flipped:not(.rotated) .furniture-art { transform: scaleX(-1); }
 .placed-item.rotated .furniture-art { position: absolute; inset: auto; left: 50%; top: 50%; width: var(--rotated-art-width); height: var(--rotated-art-height); min-width: 0; min-height: 0; padding: 0; overflow: hidden; transform: translate(-50%, -50%) rotate(var(--furniture-rotation)) scaleX(var(--flip-scale, 1)); }
 .placed-item.rotated .furniture-art img { position: static; display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: contain; object-position: center; transform: none; }
+.placed-item.rotated .furniture-art.sofa img { position: absolute; left: 0; top: 50%; width: 100%; height: auto; object-fit: fill; transform: translateY(-50%); }
 .placed-item .item-label { position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); padding: 2px 5px; border-radius: 999px; background: rgba(255,255,255,.78); font-size: 8px; white-space: nowrap; opacity: 0; transition: opacity .15s; }
 .placed-item:hover .item-label, .placed-item:focus-visible .item-label { opacity: 1; }
 .placed-item.just-placed { animation: settle .22s ease; }

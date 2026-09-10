@@ -218,6 +218,7 @@ function validatePlacement(item, x, y, ignoredInstance = null, rotation = 0) {
     return x < placed.x + otherSize.width && x + size.width > placed.x && y < placed.y + otherSize.height && y + size.height > placed.y;
   });
   if (overlaps) return { valid: false, reason: "ほかの家具と重なっています" };
+
   return { valid: true, reason: "" };
 }
 
@@ -246,6 +247,7 @@ function finishDrag() {
       const target = state.placed.find((placed) => placed.instanceId === instanceId);
       target.x = state.drag.candidate.x;
       target.y = state.drag.candidate.y;
+      target.rotation = state.drag.rotation;
     } else {
       instanceId = `furniture-${state.nextId++}`;
       state.placed.push({ instanceId, type: state.drag.item.id, rotation: state.drag.rotation, flipped: state.drag.flipped, ...state.drag.candidate });
