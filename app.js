@@ -9,7 +9,7 @@ const FURNITURE = [
   { id: "chair", name: "チェア", image: "images/chair.png", width: 1, height: 1, limit: 4 },
   { id: "sofa", name: "ソファ", image: "images/sofa.png", width: 3, height: 2, limit: 1 },
   { id: "plant", name: "観葉植物", image: "images/houseplants.png", width: 1, height: 1, limit: 3 },
-  { id: "rug", name: "ラグ", image: "images/rug.png", width: 3, height: 2, limit: 1 }
+  { id: "rug", name: "ラグ", image: "images/rug.png", width: 4, height: 2, limit: 1 }
 ];
 
 const state = { placed: [], drag: null, selectedInstanceId: null, nextId: 1 };
