@@ -82,7 +82,7 @@ function renderPlaced(justPlacedId = null) {
     const hasRotation = (placed.rotation || 0) !== 0;
     const artStyle = hasRotation ? `--rotated-art-width:${rotated ? item.width / item.height * 100 : 100}%;--rotated-art-height:${rotated ? item.height / item.width * 100 : 100}%;--furniture-rotation:${placed.rotation}deg;--flip-scale:${placed.flipped ? -1 : 1};` : "";
     return `
-      <button class="placed-item ${placed.instanceId === justPlacedId ? "just-placed" : ""} ${selected ? "selected" : ""} ${hasRotation ? "rotated" : ""} ${placed.flipped ? "flipped" : ""}"
+      <button class="placed-item ${placed.type === "rug" ? "floor-item" : ""} ${placed.instanceId === justPlacedId ? "just-placed" : ""} ${selected ? "selected" : ""} ${hasRotation ? "rotated" : ""} ${placed.flipped ? "flipped" : ""}"
         type="button" data-instance="${placed.instanceId}" aria-label="${item.name}。矢印キーで移動、Rキーで回転、Fキーで左右反転" aria-pressed="${selected}"
         style="left:${placed.x * 10}%;top:${placed.y * 12.5}%;width:${size.width * 10}%;height:${size.height * 12.5}%;${artStyle}">
         ${furnitureArt(item)}<span class="item-label">${item.name}・${placed.rotation || 0}度</span>
@@ -214,6 +214,7 @@ function validatePlacement(item, x, y, ignoredInstance = null, rotation = 0) {
   const overlaps = state.placed.some((placed) => {
     if (placed.instanceId === ignoredInstance) return false;
     const other = definition(placed.type);
+    if ((item.id === "rug") !== (other.id === "rug")) return false;
     const otherSize = dimensions(other, placed.rotation);
     return x < placed.x + otherSize.width && x + size.width > placed.x && y < placed.y + otherSize.height && y + size.height > placed.y;
   });
@@ -355,7 +356,7 @@ function showCompletion() {
     const rotated = placed.rotation % 180 !== 0;
     const hasRotation = (placed.rotation || 0) !== 0;
     const artStyle = hasRotation ? `--rotated-art-width:${rotated ? item.width / item.height * 100 : 100}%;--rotated-art-height:${rotated ? item.height / item.width * 100 : 100}%;--furniture-rotation:${placed.rotation}deg;--flip-scale:${placed.flipped ? -1 : 1};` : "";
-    return `<div class="placed-item ${hasRotation ? "rotated" : ""} ${placed.flipped ? "flipped" : ""}" style="left:${placed.x * 10}%;top:${placed.y * 12.5}%;width:${size.width * 10}%;height:${size.height * 12.5}%;${artStyle}">${furnitureArt(item)}</div>`;
+    return `<div class="placed-item ${placed.type === "rug" ? "floor-item" : ""} ${hasRotation ? "rotated" : ""} ${placed.flipped ? "flipped" : ""}" style="left:${placed.x * 10}%;top:${placed.y * 12.5}%;width:${size.width * 10}%;height:${size.height * 12.5}%;${artStyle}">${furnitureArt(item)}</div>`;
   }).join("");
   elements.editor.hidden = true;
   elements.actionbar.hidden = true;
