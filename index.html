@@ -40,9 +40,19 @@
               <span class="eyebrow">MY ROOM</span>
               <h2 id="roomTitle">わたしの部屋</h2>
             </div>
-            <div class="legend" aria-label="配置状態の凡例">
-              <span><i class="legend-dot available"></i>置ける</span>
-              <span><i class="legend-dot blocked"></i>置けない</span>
+            <div class="workspace-tools">
+              <div class="legend" aria-label="配置状態の凡例">
+                <span><i class="legend-dot available"></i>置ける</span>
+                <span><i class="legend-dot blocked"></i>置けない</span>
+              </div>
+              <div class="actions workspace-actions">
+                <button class="button button-secondary flip-button" id="flipButton" type="button" disabled><span aria-hidden="true">↔</span> 左右反転</button>
+                <button class="button button-secondary rotate-button" id="rotateButton" type="button" disabled><span aria-hidden="true">↻</span> 回転</button>
+                <button class="button button-secondary" id="resetButton" type="button">リセット</button>
+                <button class="button button-primary" id="completeButton" type="button" disabled>
+                  <span>お部屋を完成する</span><span aria-hidden="true">→</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -72,14 +82,6 @@
         <div class="requirements" aria-labelledby="requirementsTitle">
           <span class="eyebrow" id="requirementsTitle">COMPLETE</span>
           <div class="requirement-list" id="requirementList"></div>
-        </div>
-        <div class="actions">
-          <button class="button button-secondary flip-button" id="flipButton" type="button" disabled><span aria-hidden="true">↔</span> 左右反転</button>
-          <button class="button button-secondary rotate-button" id="rotateButton" type="button" disabled><span aria-hidden="true">↻</span> 回転</button>
-          <button class="button button-secondary" id="resetButton" type="button">リセット</button>
-          <button class="button button-primary" id="completeButton" type="button" disabled>
-            <span>お部屋を完成する</span><span aria-hidden="true">→</span>
-          </button>
         </div>
       </footer>
 
